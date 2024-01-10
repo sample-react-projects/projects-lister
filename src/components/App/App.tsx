@@ -1,6 +1,6 @@
 import styles from "./App.module.scss";
-import AddProject from "./components/add-project/AddProject";
-import Navigation from "./components/navigation/Navigation";
+import AddProject from "../add-project/AddProject";
+import Navigation from "../navigation/Navigation";
 
 function App() {
   return (
