@@ -1,6 +1,5 @@
 import Button from "../ui/button/Button";
 import { Variant } from "../ui/button/Button.variant";
-import styles from "./Navigation.module.scss";
 
 interface INavigation {}
 const Navigation: React.FC<INavigation> = () => {
