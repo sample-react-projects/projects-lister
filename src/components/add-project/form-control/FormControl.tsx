@@ -4,15 +4,9 @@ import { Variant } from "../../ui/button/Button.variant";
 import Textbox from "../../ui/textbox/Textbox";
 import styles from "./FormControl.module.scss";
 import { v4 } from "uuid";
+import { Project } from "../../../types/Project";
+import { ProjectKeys } from "../../../types/ProjectKeys";
 
-type Project = {
-  id: string;
-  title: string;
-  location: string;
-  tenure: string;
-  budget: string;
-};
-type ProjectKeys = keyof typeof EMPTY_PROJECT_STATE;
 const EMPTY_PROJECT_STATE: Project = {
   id: v4(),
   title: "",
