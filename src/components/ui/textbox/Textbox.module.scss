@@ -12,7 +12,8 @@
 
   &__input {
     all: unset;
-    border-bottom: 1px solid #64748b;
+    border-bottom: 2px solid #cbd5e1;
+    box-sizing: border-box;
     padding: 0.25rem;
     width: 100%;
 
