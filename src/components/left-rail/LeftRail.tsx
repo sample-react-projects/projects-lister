@@ -7,8 +7,7 @@ import {
 } from "../../context/ProjectsContextProvider";
 import Projects from "./projects/Projects";
 
-interface INavigation {}
-const Navigation: React.FC<INavigation> = () => {
+const LeftRail: React.FC<{}> = () => {
   const { setActiveProjectId } = useContext<IProjectsContext>(ProjectsContext);
 
   function resetActiveProjectId() {
@@ -17,7 +16,7 @@ const Navigation: React.FC<INavigation> = () => {
 
   return (
     <>
-      <h1 className="navigation__title">Projects Lister</h1>
+      <h1>Projects Lister</h1>
       <Button variant={Variant.primary} onClick={resetActiveProjectId}>
         + Add Project
       </Button>
@@ -26,4 +25,4 @@ const Navigation: React.FC<INavigation> = () => {
   );
 };
 
-export default Navigation;
+export default LeftRail;

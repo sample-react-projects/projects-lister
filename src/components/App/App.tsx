@@ -1,19 +1,19 @@
 import styles from "./App.module.scss";
-import AddProject from "../add-project/AddProject";
-import Navigation from "../navigation/Navigation";
-import ProjectContextProvider from "../../context/ProjectsContextProvider";
+import ProjectsContextProvider from "../../context/ProjectsContextProvider";
+import RightRail from "../right-rail/RightRail";
+import LeftRail from "../left-rail/LeftRail";
 
 function App() {
   return (
     <div className={styles.container}>
-      <ProjectContextProvider>
+      <ProjectsContextProvider>
         <div className={styles["container__rail-left"]}>
-          <Navigation></Navigation>
+          <LeftRail></LeftRail>
         </div>
         <div className={styles["container__rail-right"]}>
-          <AddProject></AddProject>
+          <RightRail></RightRail>
         </div>
-      </ProjectContextProvider>
+      </ProjectsContextProvider>
     </div>
   );
 }
