@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../../ui/button/Button";
 import { Variant } from "../../ui/button/Button.variant";
 import Textbox from "../../ui/textbox/Textbox";
@@ -6,8 +6,12 @@ import styles from "./FormControl.module.scss";
 import { v4 } from "uuid";
 import { Project } from "../../../types/Project";
 import { ProjectKeys } from "../../../types/ProjectKeys";
+import {
+  IProjectsContext,
+  ProjectsContext,
+} from "../../../context/ProjectsContextProvider";
 
-const EMPTY_PROJECT_STATE: Project = {
+const EMPTY_PROJECT_FORM_STATE: Project = {
   id: v4(),
   title: "",
   location: "",
@@ -16,23 +20,28 @@ const EMPTY_PROJECT_STATE: Project = {
 };
 
 const FormControl = () => {
-  const [project, setProject] = useState<Project>(EMPTY_PROJECT_STATE);
+  const [projectForm, setProjectForm] = useState<Project>(
+    EMPTY_PROJECT_FORM_STATE
+  );
+  const { addProject, setActiveProjectId } =
+    useContext<IProjectsContext>(ProjectsContext);
 
-  function updateState(
+  function updateFormState(
     key: ProjectKeys,
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    setProject((prevProjectValue) => {
+    setProjectForm((prevProjectValue) => {
       return { ...prevProjectValue, [key]: event.target.value };
     });
   }
 
   function resetProjectState() {
-    setProject(EMPTY_PROJECT_STATE);
+    setProjectForm(EMPTY_PROJECT_FORM_STATE);
   }
 
   function saveProject() {
-    console.log(project);
+    addProject(projectForm);
+    setActiveProjectId(projectForm.id);
   }
 
   return (
@@ -42,33 +51,33 @@ const FormControl = () => {
         <Textbox
           autoComplete="off"
           label="Title"
-          value={project.title}
+          value={projectForm.title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            updateState("title", e)
+            updateFormState("title", e)
           }
         ></Textbox>
         <Textbox
           autoComplete="off"
           label="Location"
-          value={project.location}
+          value={projectForm.location}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            updateState("location", e)
+            updateFormState("location", e)
           }
         ></Textbox>
         <Textbox
           autoComplete="off"
           label="Tenure"
-          value={project.tenure}
+          value={projectForm.tenure}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            updateState("tenure", e)
+            updateFormState("tenure", e)
           }
         ></Textbox>
         <Textbox
           autoComplete="off"
           label="Budget"
-          value={project.budget}
+          value={projectForm.budget}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            updateState("budget", e)
+            updateFormState("budget", e)
           }
         ></Textbox>
         <div className={styles.actions}>
