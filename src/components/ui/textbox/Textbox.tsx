@@ -3,6 +3,7 @@ import styles from "./Textbox.module.scss";
 
 interface ITextbox {
   label?: string;
+  [key: string]: any;
 }
 const Textbox: React.FC<ITextbox> = ({ label, ...props }) => {
   const id = useId();

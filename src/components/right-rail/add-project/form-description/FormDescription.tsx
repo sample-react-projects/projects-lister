@@ -7,7 +7,7 @@ const FormDescription = () => {
         start appearing in the left pane.
       </p>
       <p>
-        Once added, you may select that project and start adding subtasks to it.{" "}
+        Once added, you may select that project and start adding subtasks to it.
       </p>
       <p>Subtask done? Just delete it from the list!</p>
     </>

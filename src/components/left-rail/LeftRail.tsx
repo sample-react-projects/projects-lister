@@ -17,7 +17,11 @@ const LeftRail: React.FC<{}> = () => {
   return (
     <>
       <h1>Projects Lister</h1>
-      <Button variant={Variant.primary} onClick={resetActiveProjectId}>
+      <Button
+        style={{ alignSelf: "flex-start" }}
+        variant={Variant.primary}
+        onClick={resetActiveProjectId}
+      >
         + Add Project
       </Button>
       <Projects></Projects>
