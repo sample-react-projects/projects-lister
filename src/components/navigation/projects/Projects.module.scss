@@ -1,0 +1,14 @@
+.project {
+  cursor: pointer;
+  margin: 0 -1rem;
+  padding: 1rem;
+
+  &:hover {
+    background-color: #94a3b8;
+  }
+
+  &.active {
+    background-color: #64748b;
+    color: #f8fafc;
+  }
+}
