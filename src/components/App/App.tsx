@@ -4,6 +4,7 @@ import RightRail from "../right-rail/RightRail";
 import LeftRail from "../left-rail/LeftRail";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import Modal from "../ui/modal/Modal";
 
 function App() {
   return (
@@ -11,12 +12,14 @@ function App() {
       <Header></Header>
       <div className={styles["container__content"]}>
         <ProjectsContextProvider>
-          <div className={styles["container__rail-left"]}>
-            <LeftRail></LeftRail>
-          </div>
-          <div className={styles["container__rail-right"]}>
-            <RightRail></RightRail>
-          </div>
+          <Modal>
+            <div className={styles["container__rail-left"]}>
+              <LeftRail></LeftRail>
+            </div>
+            <div className={styles["container__rail-right"]}>
+              <RightRail></RightRail>
+            </div>
+          </Modal>
         </ProjectsContextProvider>
       </div>
       <Footer></Footer>
