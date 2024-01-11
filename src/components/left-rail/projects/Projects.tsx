@@ -9,6 +9,7 @@ const Projects: React.FC<{}> = () => {
   const activeProjectId = getActiveProjectId();
 
   return (
+    projects.length ? 
     <ul className={styles.projects}>
       {projects.map((project) => {
         return (
@@ -23,7 +24,7 @@ const Projects: React.FC<{}> = () => {
           </li>
         );
       })}
-    </ul>
+    </ul> : <p className={styles['projects__empty']}>No projects available</p>
   );
 };
 
