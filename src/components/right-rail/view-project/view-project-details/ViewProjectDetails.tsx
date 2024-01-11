@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ProjectsContext } from "../../../context/ProjectsContextProvider";
+import { ProjectsContext } from "../../../../context/ProjectsContextProvider";
 
-const Project: React.FC<{}> = () => {
+const ViewProjectDetails: React.FC<{}> = () => {
   const { getActiveProject } = useContext(ProjectsContext);
   const activeProject = getActiveProject();
 
@@ -24,4 +24,4 @@ const Project: React.FC<{}> = () => {
   ) : null;
 };
 
-export default Project;
+export default ViewProjectDetails;
