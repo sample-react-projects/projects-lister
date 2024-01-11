@@ -3,7 +3,8 @@ import { ProjectsContext } from "../../../context/ProjectsContextProvider";
 import styles from "./Projects.module.scss";
 
 const Projects: React.FC<{}> = () => {
-  const { getProjects, getActiveProjectId } = useContext(ProjectsContext);
+  const { getProjects, getActiveProjectId, setActiveProjectId } =
+    useContext(ProjectsContext);
   const projects = getProjects();
   const activeProjectId = getActiveProjectId();
 
@@ -11,7 +12,9 @@ const Projects: React.FC<{}> = () => {
     <ul className={styles.projects}>
       {projects.map((project) => {
         return (
-          <li key={project.id}
+          <li
+            key={project.id}
+            onClick={() => setActiveProjectId(project.id)}
             className={`${styles.project} ${
               activeProjectId === project.id ? styles.active : null
             }`}
