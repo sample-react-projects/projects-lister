@@ -1,18 +1,18 @@
 import { useContext, useState } from "react";
-import Button from "../../ui/button/Button";
-import { Variant } from "../../ui/button/Button.variant";
-import Textbox from "../../ui/textbox/Textbox";
+import Button from "../../../ui/button/Button";
+import { Variant } from "../../../ui/button/Button.variant";
+import Textbox from "../../../ui/textbox/Textbox";
 import styles from "./FormControl.module.scss";
 import { v4 } from "uuid";
-import { Project } from "../../../types/Project";
-import { ProjectKeys } from "../../../types/ProjectKeys";
+import { Project } from "../../../../types/Project";
+import { ProjectKeys } from "../../../../types/ProjectKeys";
 import {
   IProjectsContext,
   ProjectsContext,
-} from "../../../context/ProjectsContextProvider";
+} from "../../../../context/ProjectsContextProvider";
 
 const EMPTY_PROJECT_FORM_STATE: Project = {
-  id: v4(),
+  id: "",
   title: "",
   location: "",
   tenure: "",
@@ -20,9 +20,10 @@ const EMPTY_PROJECT_FORM_STATE: Project = {
 };
 
 const FormControl = () => {
-  const [projectForm, setProjectForm] = useState<Project>(
-    EMPTY_PROJECT_FORM_STATE
-  );
+  const [projectForm, setProjectForm] = useState<Project>({
+    ...EMPTY_PROJECT_FORM_STATE,
+    id: v4(),
+  });
   const { addProject, setActiveProjectId } =
     useContext<IProjectsContext>(ProjectsContext);
 
