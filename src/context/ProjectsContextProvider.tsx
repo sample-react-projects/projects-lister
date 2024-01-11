@@ -3,7 +3,7 @@ import { Project } from "../types/Project";
 
 export interface IProjectsContext {
   addProject(project: Project): void;
-  getActiveProject(): Project | null;
+  getActiveProject(): Project | undefined;
   getActiveProjectId(): string;
   getProjects(): Project[];
   setActiveProjectId(projectId: string): void;
@@ -26,7 +26,7 @@ export const ProjectsContext = createContext<IProjectsContext>({
   setActiveProjectId: anyFunction,
 });
 
-const ProjectContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
+const ProjectsContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [projectsState, setProjectsState] = useState<ProjectsState>(
     DEFAULT_PROJECT_STATE
   );
@@ -39,10 +39,8 @@ const ProjectContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }
 
   function getActiveProject() {
-    return (
-      projectsState.projects.find(
-        (project) => project.id == projectsState.activeProjectId
-      ) || null
+    return projectsState.projects.find(
+      (project) => project.id == projectsState.activeProjectId
     );
   }
 
@@ -61,7 +59,7 @@ const ProjectContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     });
   }
 
-  const projectContextProviderValue = {
+  const ProjectsContextProviderValue = {
     addProject,
     getActiveProject,
     getActiveProjectId,
@@ -70,10 +68,10 @@ const ProjectContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   return (
-    <ProjectsContext.Provider value={projectContextProviderValue}>
+    <ProjectsContext.Provider value={ProjectsContextProviderValue}>
       {children}
     </ProjectsContext.Provider>
   );
 };
 
-export default ProjectContextProvider;
+export default ProjectsContextProvider;
