@@ -3,6 +3,7 @@ import { Project } from "../types/Project";
 
 export interface IProjectsContext {
   addProject(project: Project): void;
+  deleteProject(): void;
   getActiveProject(): Project | undefined;
   getActiveProjectId(): string;
   getProjects(): Project[];
@@ -20,6 +21,7 @@ const DEFAULT_PROJECT_STATE: ProjectsState = { projects: [] };
 
 export const ProjectsContext = createContext<IProjectsContext>({
   addProject: anyFunction,
+  deleteProject: anyFunction,
   getActiveProject: anyFunction,
   getActiveProjectId: anyFunction,
   getProjects: anyFunction,
@@ -35,6 +37,17 @@ const ProjectsContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setProjectsState((currentProjectsState) => {
       currentProjectsState.projects.push(project);
       return { ...currentProjectsState };
+    });
+  }
+
+  function deleteProject() {
+    setProjectsState((currentProjectState) => {
+      const projects = currentProjectState.projects.filter(
+        (project) => project.id !== projectsState.activeProjectId
+      );
+
+      console.log(currentProjectState);
+      return { projects };
     });
   }
 
@@ -61,6 +74,7 @@ const ProjectsContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const ProjectsContextProviderValue = {
     addProject,
+    deleteProject,
     getActiveProject,
     getActiveProjectId,
     getProjects,
