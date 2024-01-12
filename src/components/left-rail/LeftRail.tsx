@@ -6,7 +6,6 @@ import {
   ProjectsContext,
 } from "../../context/ProjectsContextProvider";
 import Projects from "./projects/Projects";
-import Card from "../ui/card/Card";
 import styles from "./LeftRail.module.scss";
 
 const LeftRail: React.FC<{}> = () => {
@@ -17,19 +16,17 @@ const LeftRail: React.FC<{}> = () => {
   }
 
   return (
-    <Card>
-      <div className={styles.container}>
-        <h2>My Projects</h2>
-        <Projects></Projects>
-        <Button
-          style={{ alignSelf: "flex-start" }}
-          variant={Variant.primary}
-          onClick={resetActiveProjectId}
-        >
-          + Add Project
-        </Button>
-      </div>
-    </Card>
+    <div className={styles.container}>
+      <h2>My Projects</h2>
+      <Projects></Projects>
+      <Button
+        style={{ alignSelf: "flex-start" }}
+        variant={Variant.primary}
+        onClick={resetActiveProjectId}
+      >
+        + Add Project
+      </Button>
+    </div>
   );
 };
 
