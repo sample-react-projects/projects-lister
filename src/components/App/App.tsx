@@ -5,19 +5,63 @@ import LeftRail from "../left-rail/LeftRail";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Modal from "../ui/modal/Modal";
+import SlideoutMenu from "../ui/slideout-menu/SlideoutMenu";
+import { useLayoutEffect, useState } from "react";
+import Card from "../ui/card/Card";
+
+enum Device {
+  Mobile = "Mobile",
+  Tablet = "Tablet",
+  Desktop = "Desktop",
+}
+
+function determineCurrentMedia() {
+  if (window.innerWidth < 576) {
+    return Device.Mobile;
+  } else if (window.innerWidth < 992) {
+    return Device.Tablet;
+  }
+  return Device.Desktop;
+}
 
 function App() {
+  const [renderMenu, setRenderMenu] = useState(false);
+
+  useLayoutEffect(() => {
+    function shouldRenderMenu() {
+      const currentMedia = determineCurrentMedia();
+      setRenderMenu(currentMedia === Device.Mobile);
+    }
+
+    shouldRenderMenu();
+    window.addEventListener("resize", shouldRenderMenu);
+
+    return () => {
+      window.removeEventListener("resize", determineCurrentMedia);
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <Header></Header>
       <div className={styles["container__content"]}>
         <ProjectsContextProvider>
           <Modal>
-            <div className={styles["container__rail-left"]}>
-              <LeftRail></LeftRail>
-            </div>
+            {renderMenu ? (
+              <SlideoutMenu>
+                <LeftRail></LeftRail>
+              </SlideoutMenu>
+            ) : (
+              <div className={styles["container__rail-left"]}>
+                <Card>
+                  <LeftRail></LeftRail>
+                </Card>
+              </div>
+            )}
             <div className={styles["container__rail-right"]}>
-              <RightRail></RightRail>
+              <Card>
+                <RightRail></RightRail>
+              </Card>
             </div>
           </Modal>
         </ProjectsContextProvider>

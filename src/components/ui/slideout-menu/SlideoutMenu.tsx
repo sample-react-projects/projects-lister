@@ -3,7 +3,7 @@ import styles from "./SlideoutMenu.module.scss";
 import { PropsWithChildren, useId, useState } from "react";
 
 interface ISlideoutMenu extends PropsWithChildren {
-  title: string;
+  title?: string;
 }
 const SlideoutMenu: React.FC<ISlideoutMenu> = ({ children, title }) => {
   const [addAnimateClass, setaddAnimateClass] = useState(false);
