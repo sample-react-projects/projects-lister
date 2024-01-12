@@ -46,7 +46,6 @@ const ProjectsContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
         (project) => project.id !== projectsState.activeProjectId
       );
 
-      console.log(currentProjectState);
       return { projects };
     });
   }

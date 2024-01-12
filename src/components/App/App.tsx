@@ -9,6 +9,8 @@ import SlideoutMenu from "../ui/slideout-menu/SlideoutMenu";
 import { useLayoutEffect, useState } from "react";
 import Card from "../ui/card/Card";
 
+const DEBOUNCE_TIME = 100;
+
 enum Device {
   Mobile = "Mobile",
   Tablet = "Tablet",
@@ -28,9 +30,15 @@ function App() {
   const [renderMenu, setRenderMenu] = useState(false);
 
   useLayoutEffect(() => {
+    let timeoutId: number;
+
     function shouldRenderMenu() {
-      const currentMedia = determineCurrentMedia();
-      setRenderMenu(currentMedia === Device.Mobile);
+      clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
+        const currentMedia = determineCurrentMedia();
+        setRenderMenu(currentMedia === Device.Mobile);
+      }, DEBOUNCE_TIME);
     }
 
     shouldRenderMenu();
