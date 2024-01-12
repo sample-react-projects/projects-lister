@@ -1,0 +1,62 @@
+.menu {
+  &__input {
+    display: none;
+  }
+
+  &__mask {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    height: 100svh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 2;
+  }
+
+  &__header {
+    align-items: flex-start;
+    display: flex;
+    margin-bottom: 1rem;
+
+    .menu__title {
+      flex: 1;
+    }
+
+    .menu__switch-close {
+      cursor: pointer;
+      font-size: 2rem;
+      line-height: 1rem;
+    }
+  }
+
+  &__switch-open {
+    align-items: center;
+    border: 1px solid #f8fafc;
+    border-radius: 0.2rem;
+    color: #f8fafc;
+    cursor: pointer;
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+    left: 1rem;
+    line-height: 1rem;
+    padding: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    z-index: 1;
+  }
+
+  &__container {
+    background-color: #f8fafc;
+    display: none;
+    height: 100svh;
+    left: 0;
+    max-width: 80vw;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 400px;
+    z-index: 2;
+  }
+}
