@@ -1,6 +1,13 @@
 .menu {
   &__input {
     display: none;
+
+    &:checked {
+      ~ .menu__mask,
+      ~ .menu__container {
+        display: block;
+      }
+    }
   }
 
   &__mask {

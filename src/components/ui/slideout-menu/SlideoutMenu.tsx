@@ -11,12 +11,16 @@ const SlideoutMenu: React.FC<ISlideoutMenu> = ({ children, title }) => {
   return createPortal(
     <>
       <input type="checkbox" className={styles.menu__input} id={id}></input>
-      <div className={styles.menu__mask}></div>
-      <label htmlFor={id} className={styles["menu__switch-open"]}>=</label>
+      <label htmlFor={id} className={styles.menu__mask}></label>
+      <label htmlFor={id} className={styles["menu__switch-open"]}>
+        =
+      </label>
       <div className={styles.menu__container}>
         <div className={styles.menu__header}>
           <h3 className={styles.menu__title}>{title}</h3>
-          <label htmlFor={id} className={styles["menu__switch-close"]}>x</label>
+          <label htmlFor={id} className={styles["menu__switch-close"]}>
+            x
+          </label>
         </div>
         {children}
       </div>
