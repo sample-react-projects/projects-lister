@@ -48,7 +48,7 @@ const FormControl = () => {
   return (
     <>
       <h3>Add a new task</h3>
-      <div className={`container--horizontal ${styles.form}`}>
+      <div className={`container--vertical ${styles.form}`}>
         <Textbox
           autoComplete="off"
           label="Title"
@@ -81,7 +81,7 @@ const FormControl = () => {
             updateFormState("budget", e)
           }
         ></Textbox>
-        <div className={styles.actions}>
+        <div className={`container--horizontal ${styles.actions}`}>
           <Button variant={Variant.link} onClick={resetProjectState}>
             CLEAR
           </Button>

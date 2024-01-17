@@ -15,7 +15,7 @@ const LeftRail: React.FC<{}> = () => {
   }
 
   return (
-    <div className="container--horizontal">
+    <div className="container--vertical">
       <h2>My Projects</h2>
       <Projects></Projects>
       <Button

@@ -18,7 +18,7 @@ const DeleteProject: React.FC<{}> = () => {
     <>
       <h3>Delete project?</h3>
       <p>Are you sure you want to delete this project?</p>
-      <div className={styles.actions}>
+      <div className={`container-vertical ${styles.actions}`}>
         <Button variant={Variant.link} onClick={closeModal}>
           cancel
         </Button>

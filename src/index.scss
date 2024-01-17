@@ -20,13 +20,13 @@ h3 {
   margin: 0;
 }
 
-.container--horizontal {
+.container---horizontal {
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
+  column-gap: 1rem;
 }
 
-.container--vertical {
+.container---vertical {
   display: flex;
   flex-direction: column;
   row-gap: 1rem;

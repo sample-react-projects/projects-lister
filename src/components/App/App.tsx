@@ -50,9 +50,9 @@ function App() {
   }, []);
 
   return (
-    <div className={`${styles.container} container--horizontal`}>
+    <div className={`${styles.container} container--vertical`}>
       <Header></Header>
-      <div className={styles["container__content"]}>
+      <div className={`container--vertical ${styles["container__content"]}`}>
         <ProjectsContextProvider>
           <Modal>
             {renderMenu ? (
@@ -60,7 +60,7 @@ function App() {
                 <LeftRail></LeftRail>
               </SlideoutMenu>
             ) : (
-              <div className={`container--horizontal ${styles["container__rail-left"]}`}>
+              <div className={`container--vertical ${styles["container__rail-left"]}`}>
                 <Card>
                   <LeftRail></LeftRail>
                 </Card>

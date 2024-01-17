@@ -3,7 +3,7 @@ import FormDescription from "./form-description/FormDescription";
 
 const AddProject = () => {
   return (
-    <div className="container--horizontal">
+    <div className="container--vertical">
       <FormDescription></FormDescription>
       <FormControl></FormControl>
     </div>
