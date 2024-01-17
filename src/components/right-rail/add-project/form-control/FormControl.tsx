@@ -48,7 +48,7 @@ const FormControl = () => {
   return (
     <>
       <h3>Add a new task</h3>
-      <div className={styles.form}>
+      <div className={`container--horizontal ${styles.form}`}>
         <Textbox
           autoComplete="off"
           label="Title"

@@ -6,7 +6,6 @@ import {
   ProjectsContext,
 } from "../../context/ProjectsContextProvider";
 import Projects from "./projects/Projects";
-import styles from "./LeftRail.module.scss";
 
 const LeftRail: React.FC<{}> = () => {
   const { setActiveProjectId } = useContext<IProjectsContext>(ProjectsContext);
@@ -16,7 +15,7 @@ const LeftRail: React.FC<{}> = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="container--horizontal">
       <h2>My Projects</h2>
       <Projects></Projects>
       <Button

@@ -50,7 +50,7 @@ function App() {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} container--horizontal`}>
       <Header></Header>
       <div className={styles["container__content"]}>
         <ProjectsContextProvider>
@@ -60,7 +60,7 @@ function App() {
                 <LeftRail></LeftRail>
               </SlideoutMenu>
             ) : (
-              <div className={styles["container__rail-left"]}>
+              <div className={`container--horizontal ${styles["container__rail-left"]}`}>
                 <Card>
                   <LeftRail></LeftRail>
                 </Card>
