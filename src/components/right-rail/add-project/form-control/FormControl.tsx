@@ -19,7 +19,7 @@ const EMPTY_PROJECT_FORM_STATE: Project = {
   budget: "",
 };
 
-const FormControl = () => {
+const FormControl: React.FC<{}> = () => {
   const [projectForm, setProjectForm] = useState<Project>({
     ...EMPTY_PROJECT_FORM_STATE,
     id: v4(),

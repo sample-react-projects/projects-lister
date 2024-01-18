@@ -1,30 +1,57 @@
-import { useContext } from "react";
-import Button from "../ui/button/Button";
-import { Variant } from "../ui/button/Button.variant";
-import {
-  IProjectsContext,
-  ProjectsContext,
-} from "../../context/ProjectsContextProvider";
-import Projects from "./projects/Projects";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import SlideoutMenu from "../ui/slideout-menu/SlideoutMenu";
+import Card from "../ui/card/Card";
+import styles from "./LeftRail.module.scss";
+import ManageProjects from "./manage-projects/ManageProjects";
+
+const DEBOUNCE_TIME = 100;
+
+enum Device {
+  Mobile = "Mobile",
+  Tablet = "Tablet",
+  Desktop = "Desktop",
+}
+
+function determineCurrentMedia() {
+  if (window.innerWidth < 576) {
+    return Device.Mobile;
+  } else if (window.innerWidth < 992) {
+    return Device.Tablet;
+  }
+  return Device.Desktop;
+}
 
 const LeftRail: React.FC<{}> = () => {
-  const { setActiveProjectId } = useContext<IProjectsContext>(ProjectsContext);
+  const [renderMenu, setRenderMenu] = useState(false);
+  let timeoutId = useRef<number>();
 
-  function resetActiveProjectId() {
-    setActiveProjectId("");
-  }
+  const shouldRenderMenu = useCallback(function shouldRenderMenu() {
+    clearTimeout(timeoutId.current);
 
-  return (
-    <div className="container--vertical">
-      <h2>My Projects</h2>
-      <Projects></Projects>
-      <Button
-        style={{ alignSelf: "flex-start" }}
-        variant={Variant.primary}
-        onClick={resetActiveProjectId}
-      >
-        + Add Project
-      </Button>
+    timeoutId.current = setTimeout(() => {
+      const currentMedia = determineCurrentMedia();
+      setRenderMenu(currentMedia === Device.Mobile);
+    }, DEBOUNCE_TIME);
+  }, []);
+
+  useLayoutEffect(() => {
+    shouldRenderMenu();
+    window.addEventListener("resize", shouldRenderMenu);
+
+    return () => {
+      window.removeEventListener("resize", shouldRenderMenu);
+    };
+  }, []);
+
+  return renderMenu ? (
+    <SlideoutMenu>
+      <LeftRail></LeftRail>
+    </SlideoutMenu>
+  ) : (
+    <div className={`container--vertical ${styles["rail-left"]}`}>
+      <Card>
+        <ManageProjects></ManageProjects>
+      </Card>
     </div>
   );
 };
