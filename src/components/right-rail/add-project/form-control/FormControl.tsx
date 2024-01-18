@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import Button from "../../../ui/button/Button";
 import { Variant } from "../../../ui/button/Button.variant";
 import Textbox from "../../../ui/textbox/Textbox";
@@ -27,6 +27,12 @@ const FormControl = () => {
   const { addProject, setActiveProjectId } =
     useContext<IProjectsContext>(ProjectsContext);
 
+  const isFormValid =
+    projectForm.title &&
+    projectForm.budget &&
+    projectForm.location &&
+    projectForm.tenure;
+
   function updateFormState(
     key: ProjectKeys,
     event: React.ChangeEvent<HTMLInputElement>
@@ -40,7 +46,8 @@ const FormControl = () => {
     setProjectForm(EMPTY_PROJECT_FORM_STATE);
   }
 
-  function saveProject() {
+  function saveProject(event: FormEvent) {
+    event.preventDefault();
     addProject(projectForm);
     setActiveProjectId(projectForm.id);
   }
@@ -48,7 +55,10 @@ const FormControl = () => {
   return (
     <>
       <h3>Add a new task</h3>
-      <div className={`container--vertical ${styles.form}`}>
+      <form
+        className={`container--vertical ${styles.form}`}
+        onSubmit={saveProject}
+      >
         <Textbox
           autoComplete="off"
           label="Title"
@@ -67,16 +77,18 @@ const FormControl = () => {
         ></Textbox>
         <Textbox
           autoComplete="off"
-          label="Tenure"
+          label="Tenure(in months)"
           value={projectForm.tenure}
+          type="number"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             updateFormState("tenure", e)
           }
         ></Textbox>
         <Textbox
           autoComplete="off"
-          label="Budget"
+          label="Budget(in $mn)"
           value={projectForm.budget}
+          type="number"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             updateFormState("budget", e)
           }
@@ -85,11 +97,11 @@ const FormControl = () => {
           <Button variant={Variant.link} onClick={resetProjectState}>
             CLEAR
           </Button>
-          <Button type="submit" variant={Variant.primary} onClick={saveProject}>
+          <Button variant={Variant.primary} disabled={!isFormValid}>
             SUBMIT
           </Button>
         </div>
-      </div>
+      </form>
     </>
   );
 };

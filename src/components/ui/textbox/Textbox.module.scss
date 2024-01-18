@@ -17,8 +17,14 @@
     padding: 0.25rem;
     width: 100%;
 
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
     ::placeholder {
-        color: #64748b;
+      color: #64748b;
     }
 
     &:focus {
