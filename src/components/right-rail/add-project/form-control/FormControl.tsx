@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import Button from "../../../ui/button/Button";
 import { Variant } from "../../../ui/button/Button.variant";
 import Textbox from "../../../ui/textbox/Textbox";
@@ -40,7 +40,8 @@ const FormControl = () => {
     setProjectForm(EMPTY_PROJECT_FORM_STATE);
   }
 
-  function saveProject() {
+  function saveProject(event: FormEvent) {
+    event.preventDefault();
     addProject(projectForm);
     setActiveProjectId(projectForm.id);
   }
@@ -48,7 +49,10 @@ const FormControl = () => {
   return (
     <>
       <h3>Add a new task</h3>
-      <div className={`container--vertical ${styles.form}`}>
+      <form
+        className={`container--vertical ${styles.form}`}
+        onSubmit={saveProject}
+      >
         <Textbox
           autoComplete="off"
           label="Title"
@@ -85,11 +89,9 @@ const FormControl = () => {
           <Button variant={Variant.link} onClick={resetProjectState}>
             CLEAR
           </Button>
-          <Button type="submit" variant={Variant.primary} onClick={saveProject}>
-            SUBMIT
-          </Button>
+          <Button variant={Variant.primary}>SUBMIT</Button>
         </div>
-      </div>
+      </form>
     </>
   );
 };
