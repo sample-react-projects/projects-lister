@@ -27,6 +27,12 @@ const FormControl = () => {
   const { addProject, setActiveProjectId } =
     useContext<IProjectsContext>(ProjectsContext);
 
+  const isFormValid =
+    projectForm.title &&
+    projectForm.budget &&
+    projectForm.location &&
+    projectForm.tenure;
+
   function updateFormState(
     key: ProjectKeys,
     event: React.ChangeEvent<HTMLInputElement>
@@ -71,16 +77,18 @@ const FormControl = () => {
         ></Textbox>
         <Textbox
           autoComplete="off"
-          label="Tenure"
+          label="Tenure(in months)"
           value={projectForm.tenure}
+          type="number"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             updateFormState("tenure", e)
           }
         ></Textbox>
         <Textbox
           autoComplete="off"
-          label="Budget"
+          label="Budget(in $mn)"
           value={projectForm.budget}
+          type="number"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             updateFormState("budget", e)
           }
@@ -89,7 +97,9 @@ const FormControl = () => {
           <Button variant={Variant.link} onClick={resetProjectState}>
             CLEAR
           </Button>
-          <Button variant={Variant.primary}>SUBMIT</Button>
+          <Button variant={Variant.primary} disabled={!isFormValid}>
+            SUBMIT
+          </Button>
         </div>
       </form>
     </>
