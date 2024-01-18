@@ -1,4 +1,4 @@
-const FormDescription = () => {
+const FormDescription: React.FC<{}> = () => {
   return (
     <div>
       <h2>How it works?</h2>
