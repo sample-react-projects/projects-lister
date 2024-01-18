@@ -24,7 +24,7 @@ const ViewProjectDetails: React.FC<{}> = () => {
         </Button>
       </div>
       <p>
-        <strong>Budget: </strong>
+        <strong>Budget(in $mn): </strong>
         {activeProject.budget}
       </p>
       <p>
@@ -32,7 +32,7 @@ const ViewProjectDetails: React.FC<{}> = () => {
         {activeProject.location}
       </p>
       <p>
-        <strong>Tenure: </strong>
+        <strong>Tenure(in months): </strong>
         {activeProject.tenure}
       </p>
     </>
