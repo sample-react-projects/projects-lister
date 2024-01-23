@@ -1,40 +1,46 @@
 import { createPortal } from "react-dom";
 import styles from "./SlideoutMenu.module.scss";
-import { PropsWithChildren, useId, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 
 interface ISlideoutMenu extends PropsWithChildren {
   title?: string;
 }
 const SlideoutMenu: React.FC<ISlideoutMenu> = ({ children, title }) => {
   const [addAnimateClass, setaddAnimateClass] = useState(false);
-  const id = useId();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function addAnimationClass() {
     setaddAnimateClass(true);
   }
 
+  function setMenuState(flag: boolean) {
+    setIsMenuOpen(flag);
+    addAnimationClass();
+  }
+
   return createPortal(
     <>
-      <input type="checkbox" className={styles.menu__input} id={id}></input>
-      <label
-        htmlFor={id}
+      <div
         className={`${styles.menu__mask} ${
-          addAnimateClass ? styles.animate : null
-        }`}
-      ></label>
-      <label
-        htmlFor={id}
+          isMenuOpen ? styles["menu__mask--active"] : null
+        } ${addAnimateClass ? styles.animate : null}`}
+        onClick={() => setMenuState(false)}
+      ></div>
+      <span
         className={styles["menu__switch-open"]}
-        onClick={addAnimationClass}
+        onClick={() => setMenuState(true)}
       >
         =
-      </label>
+      </span>
       <div className={styles.menu__container}>
         <div className={styles.menu__header}>
           <h3 className={styles.menu__title}>{title}</h3>
-          <label htmlFor={id} className={styles["menu__switch-close"]}>
+          <span
+            className={styles["menu__switch-close"]}
+            onClick={() => setMenuState(false)}
+          >
             x
-          </label>
+          </span>
         </div>
         {children}
       </div>
