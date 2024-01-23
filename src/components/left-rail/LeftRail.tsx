@@ -22,7 +22,7 @@ function determineCurrentMedia() {
 }
 
 const LeftRail: React.FC<{}> = () => {
-  const [renderMenu, setRenderMenu] = useState(false);
+  const [renderMenu, setRenderMenu] = useState<boolean | null>(null);
   let timeoutId = useRef<number>();
 
   const shouldRenderMenu = useCallback(function shouldRenderMenu() {
@@ -43,16 +43,21 @@ const LeftRail: React.FC<{}> = () => {
     };
   }, []);
 
-  return renderMenu ? (
-    <SlideoutMenu>
-      <ManageProjects></ManageProjects>
-    </SlideoutMenu>
-  ) : (
-    <div className={`container--vertical ${styles["rail-left"]}`}>
-      <Card>
-        <ManageProjects></ManageProjects>
-      </Card>
-    </div>
+  return (
+    <>
+      {renderMenu === true && (
+        <SlideoutMenu>
+          <ManageProjects></ManageProjects>
+        </SlideoutMenu>
+      )}
+      {renderMenu === false && (
+        <div className={`container--vertical ${styles["rail-left"]}`}>
+          <Card>
+            <ManageProjects></ManageProjects>
+          </Card>
+        </div>
+      )}
+    </>
   );
 };
 
