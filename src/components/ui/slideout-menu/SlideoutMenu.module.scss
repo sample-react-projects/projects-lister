@@ -1,18 +1,4 @@
 .menu {
-  &__input {
-    display: none;
-
-    &:checked {
-      ~ .menu__mask {
-        animation: fadein 200ms forwards;
-      }
-
-      ~ .menu__container {
-        left: 0;
-      }
-    }
-  }
-
   &__mask,
   &__container {
     position: fixed;
@@ -25,8 +11,16 @@
     left: 0;
     width: 100vw;
 
-    &.animate {
-      animation: fadeout 200ms forwards;
+    &--active {
+      animation: fadein 2000ms forwards;
+
+      ~ .menu__container {
+        left: 0;
+      }
+    }
+
+    &:not(&--active).animate {
+      animation: fadeout 2000ms forwards;
     }
   }
 
@@ -57,7 +51,7 @@
     left: max(-400px, -80vw);
     max-width: 80vw;
     padding: 1rem;
-    transition: left ease-out 200ms;
+    transition: left ease-out 2000ms;
     width: 400px;
   }
 
