@@ -45,7 +45,7 @@ const LeftRail: React.FC<{}> = () => {
 
   return renderMenu ? (
     <SlideoutMenu>
-      <LeftRail></LeftRail>
+      <ManageProjects></ManageProjects>
     </SlideoutMenu>
   ) : (
     <div className={`container--vertical ${styles["rail-left"]}`}>
