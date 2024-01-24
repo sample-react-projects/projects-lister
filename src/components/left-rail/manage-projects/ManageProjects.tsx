@@ -6,12 +6,17 @@ import {
   ProjectsContext,
 } from "../../../context/ProjectsContextProvider";
 import Projects from "../projects/Projects";
+import { SlideoutMenuContext } from "../../ui/slideout-menu/SlideoutMenu";
 
 const ManageProjects: React.FC<{}> = () => {
   const { setActiveProjectId } = useContext<IProjectsContext>(ProjectsContext);
+  const { closeMenu } = useContext(SlideoutMenuContext);
 
   function resetActiveProjectId() {
     setActiveProjectId("");
+    if (closeMenu) {
+      closeMenu();
+    }
   }
 
   return (
