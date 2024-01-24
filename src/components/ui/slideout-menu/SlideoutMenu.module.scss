@@ -12,7 +12,7 @@
     width: 100vw;
 
     &--active {
-      animation: fadein 2000ms forwards;
+      animation: fadein 200ms forwards;
 
       ~ .menu__container {
         left: 0;
@@ -20,7 +20,7 @@
     }
 
     &:not(&--active).animate {
-      animation: fadeout 2000ms forwards;
+      animation: fadeout 200ms forwards;
     }
   }
 
@@ -51,7 +51,7 @@
     left: max(-400px, -80vw);
     max-width: 80vw;
     padding: 1rem;
-    transition: left ease-out 2000ms;
+    transition: left ease-out 200ms;
     width: 400px;
   }
 
